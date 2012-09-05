@@ -65,6 +65,10 @@ end
 class NestedPerson < ActiveRecord::Base
   self.table_name = 'people'
 
+  attr_accessible :first_name, :best_friend_first_name, :best_friend_attributes
+  attr_accessible :first_name, :gender, :comments, :as => :admin
+  attr_accessible :best_friend_attributes, :best_friend_first_name, :as => :admin
+
   has_one :best_friend, :class_name => 'NestedPerson', :foreign_key => :best_friend_id
   accepts_nested_attributes_for :best_friend, :update_only => true
 
