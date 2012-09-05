@@ -94,10 +94,6 @@ module ActiveRecord
 
     protected
 
-    def mass_assignment_options
-      @mass_assignment_options ||= {}
-    end
-
     def mass_assignment_role
       mass_assignment_options[:as] || :default
     end
