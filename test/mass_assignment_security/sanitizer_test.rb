@@ -1,4 +1,4 @@
-require "cases/helper"
+require "test_helper"
 require 'active_support/logger'
 
 class SanitizerTest < ActiveModel::TestCase

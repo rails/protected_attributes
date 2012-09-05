@@ -45,22 +45,22 @@ class Task
   public :sanitize_for_mass_assignment
 end
 
-class LoosePerson
+class SpecialLoosePerson
   include ActiveModel::MassAssignmentSecurity
   attr_protected :credit_rating, :administrator
   attr_protected :credit_rating, :as => :admin
 end
 
-class LooseDescendant < LoosePerson
+class LooseDescendant < SpecialLoosePerson
   attr_protected :phone_number
 end
 
-class LooseDescendantSecond< LoosePerson
+class LooseDescendantSecond< SpecialLoosePerson
   attr_protected :phone_number
   attr_protected :name
 end
 
-class TightPerson
+class SpecialTightPerson
   include ActiveModel::MassAssignmentSecurity
   attr_accessible :name, :address
   attr_accessible :name, :address, :admin, :as => :admin
@@ -70,7 +70,7 @@ class TightPerson
   end
 end
 
-class TightDescendant < TightPerson
+class TightDescendant < SpecialTightPerson
   attr_accessible :phone_number
   attr_accessible :super_powers, :as => :admin
 end

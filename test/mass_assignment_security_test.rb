@@ -71,11 +71,11 @@ class MassAssignmentSecurityTest < ActiveModel::TestCase
   end
 
   def test_mass_assignment_protection_inheritance
-    assert_blank LoosePerson.accessible_attributes
-    assert_equal Set.new(['credit_rating', 'administrator']), LoosePerson.protected_attributes
+    assert_blank SpecialLoosePerson.accessible_attributes
+    assert_equal Set.new(['credit_rating', 'administrator']), SpecialLoosePerson.protected_attributes
 
-    assert_blank LoosePerson.accessible_attributes
-    assert_equal Set.new(['credit_rating']), LoosePerson.protected_attributes(:admin)
+    assert_blank SpecialLoosePerson.accessible_attributes
+    assert_equal Set.new(['credit_rating']), SpecialLoosePerson.protected_attributes(:admin)
 
     assert_blank LooseDescendant.accessible_attributes
     assert_equal Set.new(['credit_rating', 'administrator', 'phone_number']), LooseDescendant.protected_attributes
@@ -84,11 +84,11 @@ class MassAssignmentSecurityTest < ActiveModel::TestCase
     assert_equal Set.new(['credit_rating', 'administrator', 'phone_number', 'name']), LooseDescendantSecond.protected_attributes,
       'Running attr_protected twice in one class should merge the protections'
 
-    assert_blank TightPerson.protected_attributes - TightPerson.attributes_protected_by_default
-    assert_equal Set.new(['name', 'address']), TightPerson.accessible_attributes
+    assert_blank SpecialTightPerson.protected_attributes - SpecialTightPerson.attributes_protected_by_default
+    assert_equal Set.new(['name', 'address']), SpecialTightPerson.accessible_attributes
 
-    assert_blank TightPerson.protected_attributes(:admin) - TightPerson.attributes_protected_by_default
-    assert_equal Set.new(['name', 'address', 'admin']), TightPerson.accessible_attributes(:admin)
+    assert_blank SpecialTightPerson.protected_attributes(:admin) - SpecialTightPerson.attributes_protected_by_default
+    assert_equal Set.new(['name', 'address', 'admin']), SpecialTightPerson.accessible_attributes(:admin)
 
     assert_blank TightDescendant.protected_attributes - TightDescendant.attributes_protected_by_default
     assert_equal Set.new(['name', 'address', 'phone_number']), TightDescendant.accessible_attributes

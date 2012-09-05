@@ -1,4 +1,4 @@
-require "cases/helper"
+require "test_helper"
 
 class BlackListTest < ActiveModel::TestCase
 
