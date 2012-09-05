@@ -7,7 +7,6 @@ require 'models/keyboard'
 require 'models/task'
 require 'models/person'
 
-
 module MassAssignmentTestHelpers
   def attributes_hash
     {
@@ -60,11 +59,6 @@ module MassAssignmentRelationTestHelpers
     super
     @person = LoosePerson.create(attributes_hash)
   end
-end
-
-
-class AttributeSanitizationTest < ActiveSupport::TestCase
-  include MassAssignmentTestHelpers
 
   def teardown
     ActiveRecord::Base.send(:descendants).each do |klass|
@@ -74,6 +68,11 @@ class AttributeSanitizationTest < ActiveSupport::TestCase
       end
     end
   end
+end
+
+class AttributeSanitizationTest < ActiveSupport::TestCase
+  include MassAssignmentTestHelpers
+  include MassAssignmentRelationTestHelpers
 
   def test_customized_primary_key_remains_protected
     subscriber = Subscriber.new(:nick => 'webster123', :name => 'nice try')
@@ -678,6 +677,7 @@ end
 
 class MassAssignmentSecurityNestedAttributesTest < ActiveRecord::TestCase
   include MassAssignmentTestHelpers
+  include MassAssignmentRelationTestHelpers
 
   def nested_attributes_hash(association, collection = false, except = [:id])
     if collection
