@@ -8,6 +8,15 @@ require 'models/task'
 require 'models/person'
 
 module MassAssignmentTestHelpers
+  def teardown
+    ActiveRecord::Base.send(:descendants).each do |klass|
+      begin
+        klass.delete_all
+      rescue
+      end
+    end
+  end
+
   def attributes_hash
     {
       :id => 5,
@@ -59,20 +68,10 @@ module MassAssignmentRelationTestHelpers
     super
     @person = LoosePerson.create(attributes_hash)
   end
-
-  def teardown
-    ActiveRecord::Base.send(:descendants).each do |klass|
-      begin
-        klass.delete_all
-      rescue
-      end
-    end
-  end
 end
 
 class AttributeSanitizationTest < ActiveSupport::TestCase
   include MassAssignmentTestHelpers
-  include MassAssignmentRelationTestHelpers
 
   def test_customized_primary_key_remains_protected
     subscriber = Subscriber.new(:nick => 'webster123', :name => 'nice try')
@@ -301,8 +300,7 @@ class MassAssignmentSecurityDeprecatedFindersTest < ActiveRecord::TestCase
   end
 
   def teardown
-    TightPerson.delete_all
-    LoosePerson.delete_all
+    super
     ActiveSupport::Deprecation.behavior = @deprecation_behavior
   end
 
@@ -679,7 +677,6 @@ end
 
 class MassAssignmentSecurityNestedAttributesTest < ActiveRecord::TestCase
   include MassAssignmentTestHelpers
-  include MassAssignmentRelationTestHelpers
 
   def nested_attributes_hash(association, collection = false, except = [:id])
     if collection
