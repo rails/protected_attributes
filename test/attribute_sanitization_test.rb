@@ -301,6 +301,8 @@ class MassAssignmentSecurityDeprecatedFindersTest < ActiveRecord::TestCase
   end
 
   def teardown
+    TightPerson.delete_all
+    LoosePerson.delete_all
     ActiveSupport::Deprecation.behavior = @deprecation_behavior
   end
 
