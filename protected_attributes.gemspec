@@ -8,9 +8,9 @@ Gem::Specification.new do |gem|
   gem.version       = ProtectedAttributes::VERSION
   gem.authors       = ["David Heinemeier Hansson"]
   gem.email         = ["david@loudthinking.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{Protect attributes from mass assignment in AR models}
+  gem.summary       = %q{Protect attributes from mass assignment in AR models}
+  gem.homepage      = "https://github.com/rails/protected_attributes"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
