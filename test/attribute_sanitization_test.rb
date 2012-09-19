@@ -1,6 +1,6 @@
 require 'test_helper'
 require 'ar_helper'
-require 'active_record/attribute_sanitization'
+require 'active_record/mass_assignment_security'
 require 'models/company'
 require 'models/subscriber'
 require 'models/keyboard'
