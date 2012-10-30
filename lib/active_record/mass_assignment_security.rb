@@ -18,30 +18,4 @@ class ActiveRecord::Base
   include ActiveRecord::MassAssignmentSecurity::NestedAttributes
 end
 
-class ActiveRecord::Reflection::AssociationReflection
-  include ActiveRecord::MassAssignmentSecurity::Reflection::AssociationReflection
-end
-
-module ActiveRecord::Associations
-  class Association
-    include ActiveRecord::MassAssignmentSecurity::Associations::Association
-  end
-
-  class CollectionAssociation
-    include ActiveRecord::MassAssignmentSecurity::Associations::CollectionAssociation
-  end
-
-  class CollectionProxy
-    include ActiveRecord::MassAssignmentSecurity::Associations::CollectionProxy
-  end
-
-  class HasManyThroughAssociation
-    include ActiveRecord::MassAssignmentSecurity::Associations::HasManyThroughAssociation
-  end
-
-  class SingularAssociation
-    include ActiveRecord::MassAssignmentSecurity::Associations::SingularAssociation
-  end
-end
-
 ActiveRecord::SchemaMigration.attr_accessible(:version)
