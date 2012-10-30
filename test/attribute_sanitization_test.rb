@@ -254,37 +254,6 @@ class AttributeSanitizationTest < ActiveSupport::TestCase
       assert !Task.new.respond_to?("#{method}=")
     end
   end
-
-  test "ActiveRecord::Model.whitelist_attributes works for models which inherit Base" do
-    begin
-      prev, ActiveRecord::Model.whitelist_attributes = ActiveRecord::Model.whitelist_attributes, true
-
-      klass = Class.new(ActiveRecord::Base)
-      assert_equal ActiveModel::MassAssignmentSecurity::WhiteList, klass.active_authorizers[:default].class
-      assert_equal [], klass.active_authorizers[:default].to_a
-
-      klass.attr_accessible 'foo'
-      assert_equal ['foo'], Class.new(klass).active_authorizers[:default].to_a
-    ensure
-      ActiveRecord::Model.whitelist_attributes = prev
-    end
-  end
-
-  test "ActiveRecord::Model.mass_assignment_sanitizer works for models which inherit Base" do
-    begin
-      sanitizer = Object.new
-      prev, ActiveRecord::Model.mass_assignment_sanitizer = ActiveRecord::Model.mass_assignment_sanitizer, sanitizer
-
-      klass = Class.new(ActiveRecord::Base)
-      assert_equal sanitizer, klass._mass_assignment_sanitizer
-
-      sanitizer2 = Object.new
-      klass.mass_assignment_sanitizer = sanitizer2
-      assert_equal sanitizer2, Class.new(klass)._mass_assignment_sanitizer
-    ensure
-      ActiveRecord::Model.mass_assignment_sanitizer = prev
-    end
-  end
 end
 
 

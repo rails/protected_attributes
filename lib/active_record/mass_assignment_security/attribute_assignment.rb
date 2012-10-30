@@ -2,26 +2,12 @@ require 'active_model/mass_assignment_security'
 require 'active_record'
 
 module ActiveRecord
-  ActiveSupport.on_load(:active_record_config) do
-    mattr_accessor :whitelist_attributes,      instance_accessor: false
-    mattr_accessor :mass_assignment_sanitizer, instance_accessor: false
-  end
-
   module MassAssignmentSecurity
     module AttributeAssignment
       extend ActiveSupport::Concern
       include ActiveModel::MassAssignmentSecurity
 
-      included do
-        initialize_mass_assignment_sanitizer
-      end
-
       module ClassMethods
-        def inherited(child) # :nodoc:
-          child.send :initialize_mass_assignment_sanitizer if self == Base
-          super
-        end
-
         private
 
         # The primary key and inheritance column can never be set by mass-assignment for security reasons.
@@ -29,11 +15,6 @@ module ActiveRecord
           default = [ primary_key, inheritance_column ]
           default << 'id' unless primary_key.eql? 'id'
           default
-        end
-
-        def initialize_mass_assignment_sanitizer
-          attr_accessible(nil) if Model.whitelist_attributes
-          self.mass_assignment_sanitizer = Model.mass_assignment_sanitizer if Model.mass_assignment_sanitizer
         end
       end
 
