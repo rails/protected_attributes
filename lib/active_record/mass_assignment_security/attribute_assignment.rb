@@ -2,10 +2,6 @@ require 'active_model/mass_assignment_security'
 require 'active_record'
 
 module ActiveRecord
-  ActiveSupport.on_load(:active_record_config) do
-    mattr_accessor :mass_assignment_sanitizer, instance_accessor: false
-  end
-
   module MassAssignmentSecurity
     module AttributeAssignment
       extend ActiveSupport::Concern
