@@ -1,8 +1,8 @@
 # ProtectedAttributes
 
-Protect attributes from mass assignment in AR models.
+Protect attributes from mass-assignment in ActiveRecord models.
 
-This plugin add `attr_accessible` and `attr_protected` in your models.
+This plugin adds `attr_accessible` and `attr_protected` in your models.
 
 ## Installation
 
@@ -37,14 +37,14 @@ A much better way, because it follows the whitelist-principle, is the `attr_acce
 
 If you want to set a protected attribute, you will to have to assign it individually:
 
-    params[:user] # => {:name => "ow3ned", :admin => true}
+    params[:user] # => {:name => "owned", :admin => true}
     @user = User.new(params[:user])
-    @user.admin # => false # not mass-assigned
+    @user.admin # => false, not mass-assigned
     @user.admin = true
     @user.admin # => true
 
-When assigning attributes in Active Record using `attributes=` the `:default` role will be used. To assign attributes using different roles you should use `assign_attributes` which accepts an optional `:as` options parameter. If no :as option is provided then the `:default` role will be used. 
-You can also bypass mass-assignment security by using the :without_protection option. Here is an example:
+When assigning attributes in Active Record using `attributes=` the `:default` role will be used. To assign attributes using different roles you should use `assign_attributes` which accepts an optional `:as` options parameter. If no `:as` option is provided then the `:default` role will be used. 
+You can also bypass mass-assignment security by using the `:without_protection` option. Here is an example:
 
     @user = User.new
  
@@ -60,7 +60,7 @@ You can also bypass mass-assignment security by using the :without_protection op
     @user.name # => Josh
     @user.is_admin # => true
 
-In a similar way, `new`, `create`, `create!`, `update_attributes`, and `update_attributes!` methods all respect mass-assignment security and accept either `:as` or `:without_protection` options. For example:
+In a similar way, `new`, `create`, `create!`, `update_attributes` and `update_attributes!` methods all respect mass-assignment security and accept either `:as` or `:without_protection` options. For example:
 
     @user = User.new({ :name => 'Sebastian', :is_admin => true }, :as => :admin)
     @user.name # => Sebastian
@@ -76,11 +76,11 @@ This can be easily achieved with a very simple application config option of:
     config.active_record.whitelist_attributes = true
 
 This will create an empty whitelist of attributes available for mass-assignment for all models in your app. 
-As such, your models will need to explicitly whitelist or blacklist accessible parameters by using an `attr_accessible` or `attr_protected` declaration. This technique is best applied at the start of a new project. However, for an existing project with a thorough set of functional tests, it should be straightforward and relatively quick to use this application config option; run your tests, and expose each attribute (via `attr_accessible` or `attr_protected`). as dictated by your failing test.
+As such, your models will need to explicitly whitelist or blacklist accessible parameters by using an `attr_accessible` or `attr_protected` declaration. This technique is best applied at the start of a new project. However, for an existing project with a thorough set of functional tests, it should be straightforward and relatively quick to use this application config option; run your tests, and expose each attribute (via `attr_accessible` or `attr_protected`), as dictated by your failing test.
 
-For more complex permissions, mass assignment security may be handled outside the model by extending a non-ActiveRecord class, such as a controller, with this behavior.
+For more complex permissions, mass-assignment security may be handled outside the model by extending a non-ActiveRecord class, such as a controller, with this behavior.
 
-For example, a logged in user may need to assign additional attributes depending on their role:
+For example, a logged-in user may need to assign additional attributes depending on their role:
 
     class AccountsController < ApplicationController
       include ActiveModel::MassAssignmentSecurity
