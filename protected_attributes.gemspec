@@ -18,10 +18,10 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_dependency "activemodel",  ">= 4.0.0.beta", "< 5.0"
-  gem.add_dependency "activerecord", ">= 4.0.0.beta", "< 5.0"
-  gem.add_dependency "actionpack",   ">= 4.0.0.beta", "< 5.0"
   gem.add_dependency "railties",     ">= 4.0.0.beta", "< 5.0"
 
+  gem.add_development_dependency "activerecord", ">= 4.0.0.beta", "< 5.0"
+  gem.add_development_dependency "actionpack",   ">= 4.0.0.beta", "< 5.0"
   gem.add_development_dependency "sqlite3"
   gem.add_development_dependency "mocha"
 end
