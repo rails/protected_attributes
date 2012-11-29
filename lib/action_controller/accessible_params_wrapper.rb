@@ -1,40 +1,29 @@
 require 'active_support/concern'
 require 'action_controller'
+require 'action_controller/metal/params_wrapper'
 
 module ActionController
-  module AccessibleParamsWrapper
-    extend ActiveSupport::Concern
+  module ParamsWrapper
+    class Options # :nodoc:
+      def include
+        return super if @include_set
 
-    module ClassMethods
-      protected
+        m = model
+        synchronize do
+          return super if @include_set
 
-      def _set_wrapper_defaults(options, model=nil)
-        options = options.dup
+          @include_set = true
 
-        unless options[:include] || options[:exclude]
-          model ||= _default_wrap_model
-          role = options.fetch(:as, :default)
-          if model.respond_to?(:accessible_attributes) && model.accessible_attributes(role).present?
-            options[:include] = model.accessible_attributes(role).to_a
-          elsif model.respond_to?(:attribute_names) && model.attribute_names.present?
-            options[:include] = model.attribute_names
+          unless super || exclude
+
+            if m.respond_to?(:accessible_attributes) && m.accessible_attributes(:default).present?
+              self.include = m.accessible_attributes(:default).to_a
+            elsif m.respond_to?(:attribute_names) && m.attribute_names.any?
+              self.include = m.attribute_names
+            end
           end
         end
-
-        unless options[:name] || self.anonymous?
-          model ||= _default_wrap_model
-          options[:name] = model ? model.to_s.demodulize.underscore :
-            controller_name.singularize
-        end
-
-        options[:include] = Array(options[:include]).collect(&:to_s) if options[:include]
-        options[:exclude] = Array(options[:exclude]).collect(&:to_s) if options[:exclude]
-        options[:format]  = Array(options[:format])
-
-        self._wrapper_options = options
       end
     end
   end
 end
-
-ActionController::Base.send :include, ActionController::AccessibleParamsWrapper

@@ -4,7 +4,7 @@ require 'action_controller/accessible_params_wrapper'
 
 module ParamsWrapperTestHelp
   def with_default_wrapper_options(&block)
-    @controller.class._wrapper_options = {:format => [:json]}
+    @controller.class._set_wrapper_options({:format => [:json]})
     @controller.class.inherited(@controller.class)
     yield
   end
