@@ -254,6 +254,24 @@ class AttributeSanitizationTest < ActiveSupport::TestCase
       assert !Task.new.respond_to?("#{method}=")
     end
   end
+
+  def test_new_with_protected_inheritance_column
+    firm = Company.new(type: "Firm")
+    assert_equal firm.class, Company
+  end
+
+  def test_new_with_accessible_inheritance_column
+    corporation = Corporation.new(type: "SpecialCorporation")
+    assert_equal corporation.class, SpecialCorporation
+  end
+
+  def test_new_with_invalid_inheritance_column_class
+    assert_raise(ActiveRecord::SubclassNotFound) { Corporation.new(type: "InvalidCorporation") }
+  end
+
+  def test_new_with_unrelated_inheritance_column_class
+    assert_raise(ActiveRecord::SubclassNotFound) { Corporation.new(type: "Person") }
+  end
 end
 
 

@@ -96,3 +96,10 @@ class Firm < Company
       log << "after_remove#{record.id}"
     end
 end
+
+class Corporation < Company
+  attr_accessible :type, :name, :description
+end
+
+class SpecialCorporation < Corporation
+end

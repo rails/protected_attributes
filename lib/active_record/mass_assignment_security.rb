@@ -8,6 +8,7 @@ require "active_record/mass_assignment_security/reflection"
 require "active_record/mass_assignment_security/relation"
 require "active_record/mass_assignment_security/validations"
 require "active_record/mass_assignment_security/associations"
+require "active_record/mass_assignment_security/inheritance"
 
 class ActiveRecord::Base
   include ActiveRecord::MassAssignmentSecurity::Core
@@ -16,6 +17,7 @@ class ActiveRecord::Base
   include ActiveRecord::MassAssignmentSecurity::Relation
   include ActiveRecord::MassAssignmentSecurity::Validations
   include ActiveRecord::MassAssignmentSecurity::NestedAttributes
+  include ActiveRecord::MassAssignmentSecurity::Inheritance
 end
 
 ActiveRecord::SchemaMigration.attr_accessible(:version)
