@@ -71,29 +71,29 @@ class MassAssignmentSecurityTest < ActiveModel::TestCase
   end
 
   def test_mass_assignment_protection_inheritance
-    assert_blank SpecialLoosePerson.accessible_attributes
+    assert SpecialLoosePerson.accessible_attributes.blank?
     assert_equal Set.new(['credit_rating', 'administrator']), SpecialLoosePerson.protected_attributes
 
-    assert_blank SpecialLoosePerson.accessible_attributes
+    assert SpecialLoosePerson.accessible_attributes.blank?
     assert_equal Set.new(['credit_rating']), SpecialLoosePerson.protected_attributes(:admin)
 
-    assert_blank LooseDescendant.accessible_attributes
+    assert LooseDescendant.accessible_attributes.blank?
     assert_equal Set.new(['credit_rating', 'administrator', 'phone_number']), LooseDescendant.protected_attributes
 
-    assert_blank LooseDescendantSecond.accessible_attributes
+    assert LooseDescendantSecond.accessible_attributes.blank?
     assert_equal Set.new(['credit_rating', 'administrator', 'phone_number', 'name']), LooseDescendantSecond.protected_attributes,
       'Running attr_protected twice in one class should merge the protections'
 
-    assert_blank SpecialTightPerson.protected_attributes - SpecialTightPerson.attributes_protected_by_default
+    assert((SpecialTightPerson.protected_attributes - SpecialTightPerson.attributes_protected_by_default).blank?)
     assert_equal Set.new(['name', 'address']), SpecialTightPerson.accessible_attributes
 
-    assert_blank SpecialTightPerson.protected_attributes(:admin) - SpecialTightPerson.attributes_protected_by_default
+    assert((SpecialTightPerson.protected_attributes(:admin) - SpecialTightPerson.attributes_protected_by_default).blank?)
     assert_equal Set.new(['name', 'address', 'admin']), SpecialTightPerson.accessible_attributes(:admin)
 
-    assert_blank TightDescendant.protected_attributes - TightDescendant.attributes_protected_by_default
+    assert((TightDescendant.protected_attributes - TightDescendant.attributes_protected_by_default).blank?)
     assert_equal Set.new(['name', 'address', 'phone_number']), TightDescendant.accessible_attributes
 
-    assert_blank TightDescendant.protected_attributes(:admin) - TightDescendant.attributes_protected_by_default
+    assert((TightDescendant.protected_attributes(:admin) - TightDescendant.attributes_protected_by_default).blank?)
     assert_equal Set.new(['name', 'address', 'admin', 'super_powers']), TightDescendant.accessible_attributes(:admin)
   end
 
