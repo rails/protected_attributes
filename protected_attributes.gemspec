@@ -8,9 +8,10 @@ Gem::Specification.new do |gem|
   gem.version       = ProtectedAttributes::VERSION
   gem.authors       = ["David Heinemeier Hansson"]
   gem.email         = ["david@loudthinking.com"]
-  gem.description   = %q{Protect attributes from mass assignment in AR models}
-  gem.summary       = %q{Protect attributes from mass assignment in AR models}
+  gem.description   = %q{Protect attributes from mass assignment}
+  gem.summary       = %q{Protect attributes from mass assignment in Active Record models}
   gem.homepage      = "https://github.com/rails/protected_attributes"
+  gem.license       = "MIT"
 
   gem.files         = Dir["LICENSE.txt", "README.md", "lib/**/*"]
   gem.test_files    = Dir["test/**/*.rb"]
