@@ -12,9 +12,8 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Protect attributes from mass assignment in AR models}
   gem.homepage      = "https://github.com/rails/protected_attributes"
 
-  gem.files         = `git ls-files`.split($/)
-  gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
-  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
+  gem.files         = Dir["LICENSE.txt", "README.md", "lib/**/*"]
+  gem.test_files    = Dir["test/**/*.rb"]
   gem.require_paths = ["lib"]
 
   gem.add_dependency "activemodel",  ">= 4.0.0.beta", "< 5.0"
