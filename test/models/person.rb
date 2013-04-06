@@ -35,7 +35,6 @@ end
 
 class LoosePerson < ActiveRecord::Base
   self.table_name = 'people'
-  self.abstract_class = true
 
   attr_protected :comments, :best_friend_id, :best_friend_of_id
   attr_protected :as => :admin
