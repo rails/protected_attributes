@@ -20,4 +20,6 @@ class ActiveRecord::Base
   include ActiveRecord::MassAssignmentSecurity::Inheritance
 end
 
-ActiveRecord::SchemaMigration.attr_accessible(:version)
+class ActiveRecord::SchemaMigration < ActiveRecord::Base
+  attr_accessible :version
+end
