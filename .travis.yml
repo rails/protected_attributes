@@ -3,6 +3,10 @@ before_install:
   - gem install bundler
 rvm:
   - 1.9.3
+  - 2.0.0
+gemfile:
+  - gemfiles/Gemfile-rails-master
+  - Gemfile
 notifications:
   email: false
   irc:
