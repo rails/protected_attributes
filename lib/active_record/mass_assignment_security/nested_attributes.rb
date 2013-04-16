@@ -4,6 +4,8 @@ module ActiveRecord
       extend ActiveSupport::Concern
 
       module ClassMethods
+        REJECT_ALL_BLANK_PROC = proc { |attributes| attributes.all? { |key, value| key == '_destroy' || value.blank? } }
+
         def accepts_nested_attributes_for(*attr_names)
           options = { :allow_destroy => false, :update_only => false }
           options.update(attr_names.extract_options!)
