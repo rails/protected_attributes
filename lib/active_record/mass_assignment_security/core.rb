@@ -9,6 +9,7 @@ module ActiveRecord
         @columns_hash = self.class.column_types.dup
 
         init_internals
+        init_changed_attributes
         ensure_proper_type
         populate_with_current_scope_attributes
 
