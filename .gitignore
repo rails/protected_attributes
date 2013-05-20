@@ -3,3 +3,5 @@
 .bundle
 *.lock
 pkg
+.ruby-version
+.ruby-gemset
