@@ -37,11 +37,11 @@ A much better way, because it follows the whitelist-principle, is the `attr_acce
 
 If you want to set a protected attribute, you will to have to assign it individually:
 
-    params[:user] # => {:name => "owned", :admin => true}
+    params[:user] # => {:name => "owned", :is_admin => true}
     @user = User.new(params[:user])
-    @user.admin # => false, not mass-assigned
-    @user.admin = true
-    @user.admin # => true
+    @user.is_admin # => false, not mass-assigned
+    @user.is_admin = true
+    @user.is_admin # => true
 
 When assigning attributes in Active Record using `attributes=` the `:default` role will be used. To assign attributes using different roles you should use `assign_attributes` which accepts an optional `:as` options parameter. If no `:as` option is provided then the `:default` role will be used. 
 You can also bypass mass-assignment security by using the `:without_protection` option. Here is an example:
