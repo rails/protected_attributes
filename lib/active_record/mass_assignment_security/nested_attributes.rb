@@ -52,7 +52,7 @@ module ActiveRecord
           assign_to_or_mark_for_destruction(record, attributes, options[:allow_destroy], assignment_opts) unless call_reject_if(association_name, attributes)
 
         elsif attributes['id'].present? && !assignment_opts[:without_protection]
-          raise_nested_attributes_record_not_found(association_name, attributes['id'])
+          raise_nested_attributes_record_not_found!(association_name, attributes['id'])
 
         elsif !reject_new_record?(association_name, attributes)
           method = "build_#{association_name}"
@@ -130,7 +130,7 @@ module ActiveRecord
           elsif assignment_opts[:without_protection]
             association.build(attributes.except(*unassignable_keys(assignment_opts)), assignment_opts)
           else
-            raise_nested_attributes_record_not_found(association_name, attributes['id'])
+            raise_nested_attributes_record_not_found!(association_name, attributes['id'])
           end
         end
       end
