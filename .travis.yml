@@ -7,8 +7,9 @@ rvm:
 gemfile:
   - gemfiles/Gemfile-rails-master
   - Gemfile
-allow_failures:
-  - gemfile: gemfiles/Gemfile-rails-master
+matrix:
+  allow_failures:
+    - gemfile: gemfiles/Gemfile-rails-master
 notifications:
   email: false
   irc:
