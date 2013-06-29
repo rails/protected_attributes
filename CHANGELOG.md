@@ -2,7 +2,12 @@
 
 * Sync #initialize override to latest rails implementation
 
-  Fixes rails/protected_attributes#14
+  Fixes #14
+
+* Fix "uninitialized constant ActiveRecord::MassAssignmentSecurity::NestedAttributes::ClassMethods::REJECT_ALL_BLANK_PROC"
+  error when using `:all_blank` option.
+
+  Fixes #8
 
 
 ## 1.0.1 (April 6, 2013)
