@@ -1,3 +1,10 @@
+## 1.0.4 (October 18, 2013)
+
+* Avoid override the entire Active Record initialization.
+
+  Fixes rails/rails#12243
+
+
 ## 1.0.3 (June 29, 2013)
 
 * Fix "uninitialized constant ActiveRecord::MassAssignmentSecurity::NestedAttributes::ClassMethods::REJECT_ALL_BLANK_PROC"
