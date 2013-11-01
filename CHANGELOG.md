@@ -1,3 +1,9 @@
+## 1.0.5 (November 1, 2013)
+
+* Fix install error with Rails 4.0.1.
+  Related with https://github.com/bundler/bundler/issues/2583
+
+
 ## 1.0.4 (October 18, 2013)
 
 * Avoid override the entire Active Record initialization.
