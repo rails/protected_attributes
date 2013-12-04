@@ -277,7 +277,7 @@ end
 
 # This class should be deleted when we remove activerecord-deprecated_finders as a
 # dependency.
-class MassAssignmentSecurityDeprecatedFindersTest < ActiveRecord::TestCase
+class MassAssignmentSecurityDeprecatedFindersTest < ActiveSupport::TestCase
   include MassAssignmentTestHelpers
 
   def setup
@@ -342,7 +342,7 @@ class MassAssignmentSecurityDeprecatedFindersTest < ActiveRecord::TestCase
 end
 
 
-class MassAssignmentSecurityHasOneRelationsTest < ActiveRecord::TestCase
+class MassAssignmentSecurityHasOneRelationsTest < ActiveSupport::TestCase
   include MassAssignmentTestHelpers
   include MassAssignmentRelationTestHelpers
 
@@ -451,7 +451,7 @@ class MassAssignmentSecurityHasOneRelationsTest < ActiveRecord::TestCase
 end
 
 
-class MassAssignmentSecurityBelongsToRelationsTest < ActiveRecord::TestCase
+class MassAssignmentSecurityBelongsToRelationsTest < ActiveSupport::TestCase
   include MassAssignmentTestHelpers
   include MassAssignmentRelationTestHelpers
 
@@ -553,7 +553,7 @@ class MassAssignmentSecurityBelongsToRelationsTest < ActiveRecord::TestCase
 end
 
 
-class MassAssignmentSecurityHasManyRelationsTest < ActiveRecord::TestCase
+class MassAssignmentSecurityHasManyRelationsTest < ActiveSupport::TestCase
   include MassAssignmentTestHelpers
   include MassAssignmentRelationTestHelpers
 
@@ -662,7 +662,7 @@ class MassAssignmentSecurityHasManyRelationsTest < ActiveRecord::TestCase
 end
 
 
-class MassAssignmentSecurityNestedAttributesTest < ActiveRecord::TestCase
+class MassAssignmentSecurityNestedAttributesTest < ActiveSupport::TestCase
   include MassAssignmentTestHelpers
 
   def nested_attributes_hash(association, collection = false, except = [:id])
@@ -925,5 +925,4 @@ class MassAssignmentSecurityNestedAttributesTest < ActiveRecord::TestCase
     assert_equal 'Josh', person.best_friend.first_name
     assert_equal 'f', person.best_friend.gender
   end
-
 end

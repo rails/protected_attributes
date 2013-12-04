@@ -1,9 +1,5 @@
 require 'active_record'
 
-ActiveSupport::Deprecation.silence do
-  require 'active_record/test_case'
-end
-
 ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
 
 ActiveRecord::Schema.verbose = false
