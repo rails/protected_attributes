@@ -24,10 +24,12 @@ module ActiveRecord
 
               type = (reflection.collection? ? :collection : :one_to_one)
 
+              generated_methods_module = active_record_41? ? generated_association_methods : generated_feature_methods
+
               # def pirate_attributes=(attributes)
               #   assign_nested_attributes_for_one_to_one_association(:pirate, attributes, mass_assignment_options)
               # end
-              generated_feature_methods.module_eval <<-eoruby, __FILE__, __LINE__ + 1
+              generated_methods_module.module_eval <<-eoruby, __FILE__, __LINE__ + 1
                 if method_defined?(:#{association_name}_attributes=)
                   remove_method(:#{association_name}_attributes=)
                 end

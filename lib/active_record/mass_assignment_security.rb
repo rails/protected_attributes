@@ -1,4 +1,9 @@
 require "active_record"
+
+def active_record_41?
+  ActiveRecord::VERSION::MAJOR == 4 && ActiveRecord::VERSION::MINOR == 1
+end
+
 require "active_record/mass_assignment_security/associations"
 require "active_record/mass_assignment_security/attribute_assignment"
 require "active_record/mass_assignment_security/core"
