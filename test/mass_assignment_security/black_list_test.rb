@@ -1,4 +1,5 @@
-require "test_helper"
+require 'test_helper'
+require 'active_model/mass_assignment_security'
 
 class BlackListTest < ActiveModel::TestCase
 
