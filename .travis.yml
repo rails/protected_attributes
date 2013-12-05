@@ -8,9 +8,6 @@ gemfile:
   - gemfiles/Gemfile-rails-master
   - gemfiles/Gemfile-rails-4
   - Gemfile
-matrix:
-  allow_failures:
-    - gemfile: gemfiles/Gemfile-rails-master
 notifications:
   email: false
   irc:
