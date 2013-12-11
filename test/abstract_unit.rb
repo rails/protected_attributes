@@ -1,7 +1,16 @@
 require 'action_dispatch'
 require 'action_controller'
-require 'active_support/core_ext/class/attribute_accessors'
 require 'active_support/dependencies'
+
+def active_support_4_0?
+  ActiveSupport::VERSION::MAJOR == 4 && ActiveSupport::VERSION::MINOR == 0
+end
+
+if active_support_4_0?
+  require 'active_support/core_ext/class/attribute_accessors'
+else
+  require 'active_support/core_ext/module/attribute_accessors'
+end
 
 module SetupOnce
   extend ActiveSupport::Concern
