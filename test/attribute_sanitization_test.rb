@@ -252,9 +252,9 @@ class AttributeSanitizationTest < ActiveSupport::TestCase
     attribute_writers.push(:_attr_readonly) if active_record_40?
 
     attribute_writers.each do |method|
-      assert_respond_to  Task, method
-      assert_respond_to  Task, "#{method}="
-      assert_respond_to  Task.new, method
+      assert_respond_to Task, method
+      assert_respond_to Task, "#{method}="
+      assert_respond_to Task.new, method unless method == :configurations && !active_record_40?
       assert !Task.new.respond_to?("#{method}=")
     end
   end
