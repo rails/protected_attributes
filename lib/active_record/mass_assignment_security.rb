@@ -1,7 +1,7 @@
 require "active_record"
 
-def active_record_41?
-  ActiveRecord::VERSION::MAJOR == 4 && ActiveRecord::VERSION::MINOR == 1
+def active_record_40?
+  ActiveRecord::VERSION::MAJOR == 4 && ActiveRecord::VERSION::MINOR == 0
 end
 
 require "active_record/mass_assignment_security/associations"

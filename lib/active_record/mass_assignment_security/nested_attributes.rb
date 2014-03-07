@@ -24,7 +24,7 @@ module ActiveRecord
 
               type = (reflection.collection? ? :collection : :one_to_one)
 
-              generated_methods_module = active_record_41? ? generated_association_methods : generated_feature_methods
+              generated_methods_module = active_record_40? ? generated_feature_methods : generated_association_methods
 
               # def pirate_attributes=(attributes)
               #   assign_nested_attributes_for_one_to_one_association(:pirate, attributes, mass_assignment_options)

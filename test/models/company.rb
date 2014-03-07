@@ -37,7 +37,7 @@ class Firm < Company
   has_many :clients_like_ms, -> { where("name = 'Microsoft'").order("id") }, :class_name => "Client"
   has_many :clients_like_ms_with_hash_conditions, -> { where(:name => 'Microsoft').order("id") }, :class_name => "Client"
 
-  unless active_record_41?
+  if active_record_40?
     ActiveSupport::Deprecation.silence do
       has_many :clients, -> { order "id" }, :dependent => :destroy, :counter_sql =>
           "SELECT COUNT(*) FROM companies WHERE firm_id = 1 " +

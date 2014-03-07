@@ -1,9 +1,5 @@
 require 'active_record'
 
-def active_record_41?
-  ActiveRecord::VERSION::MAJOR == 4 && ActiveRecord::VERSION::MINOR == 1
-end
-
 ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
 
 ActiveRecord::Schema.verbose = false
