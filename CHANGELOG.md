@@ -1,3 +1,11 @@
+## 1.0.6 (March 10, 2014)
+
+* Support to Rails 4.1
+
+* Fix `CollectionProxy#new` method.
+
+  Fixes #21
+
 ## 1.0.5 (November 1, 2013)
 
 * Fix install error with Rails 4.0.1.
