@@ -595,6 +595,40 @@ class MassAssignmentSecurityHasManyRelationsTest < ActiveSupport::TestCase
     end
   end
 
+  # new
+
+  def test_has_many_build_with_attr_protected_attributes
+    best_friend = @person.best_friends.new(attributes_hash)
+    assert_default_attributes(best_friend)
+  end
+
+  def test_has_many_build_with_attr_accessible_attributes
+    best_friend = @person.best_friends.new(attributes_hash)
+    assert_default_attributes(best_friend)
+  end
+
+  def test_has_many_build_with_admin_role_with_attr_protected_attributes
+    best_friend = @person.best_friends.new(attributes_hash, :as => :admin)
+    assert_admin_attributes(best_friend)
+  end
+
+  def test_has_many_build_with_admin_role_with_attr_accessible_attributes
+    best_friend = @person.best_friends.new(attributes_hash, :as => :admin)
+    assert_admin_attributes(best_friend)
+  end
+
+  def test_has_many_build_without_protection
+    best_friend = @person.best_friends.new(attributes_hash, :without_protection => true)
+    assert_all_attributes(best_friend)
+  end
+
+  def test_has_many_build_with_strict_sanitizer
+    with_strict_sanitizer do
+      best_friend = @person.best_friends.new(attributes_hash.except(:id, :comments))
+      assert_equal @person.id, best_friend.best_friend_id
+    end
+  end
+
   # create
 
   def test_has_many_create_with_attr_protected_attributes

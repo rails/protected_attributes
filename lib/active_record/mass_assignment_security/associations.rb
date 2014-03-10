@@ -54,6 +54,7 @@ module ActiveRecord
       def build(attributes = {}, options = {}, &block)
         @association.build(attributes, options, &block)
       end
+      alias_method :new, :build
 
       def create(attributes = {}, options = {}, &block)
         @association.create(attributes, options, &block)
