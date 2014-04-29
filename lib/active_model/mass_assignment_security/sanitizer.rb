@@ -14,7 +14,7 @@ module ActiveModel
     protected
 
       def process_removed_attributes(klass, attrs)
-        raise NotImplementedError, "#process_removed_attributes(attrs) suppose to be overwritten"
+        raise NotImplementedError, "#process_removed_attributes(attrs) is intended to be overwritten by a subclass"
       end
     end
 
