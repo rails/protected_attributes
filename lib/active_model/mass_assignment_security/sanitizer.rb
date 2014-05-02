@@ -56,8 +56,9 @@ module ActiveModel
       end
 
       def process_removed_attributes(klass, attrs)
-        return if (attrs - insensitive_attributes).empty?
-        raise ActiveModel::MassAssignmentSecurity::Error.new(klass, attrs)
+        unless (attrs - insensitive_attributes).empty?
+          raise ActiveModel::MassAssignmentSecurity::Error.new(klass, attrs)
+        end
       end
 
       def insensitive_attributes
