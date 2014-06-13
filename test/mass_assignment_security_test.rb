@@ -4,6 +4,10 @@ require 'models/mass_assignment_specific'
 require 'models/pirate'
 require 'models/group'
 require 'models/membership'
+require 'models/battle'
+require 'models/vampire'
+require 'models/wolf'
+require 'models/team'
 
 class CustomSanitizer < ActiveModel::MassAssignmentSecurity::Sanitizer
 
@@ -123,5 +127,14 @@ class MassAssignmentSecurityTest < ActiveModel::TestCase
     group = Group.create!
     pirate = Pirate.create!
     group.members << pirate
+  end
+
+  def test_concat_has_many_through_polymorphic_association
+    team = Team.create!
+    vampire = Vampire.create!
+    wolf = Wolf.create!
+
+    team.vampire_battles << vampire
+    wolf.battles << team
   end
 end

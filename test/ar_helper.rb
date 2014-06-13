@@ -63,6 +63,15 @@ ActiveRecord::Schema.define do
     t.integer  "group_id"
     t.integer  "pirate_id"
   end
+
+  create_table :teams, :force => true
+  create_table :wolves, :force => true
+  create_table :vampires, :force => true
+  create_table :battles, :force => true do |t|
+    t.integer "team_id"
+    t.integer "battle_id"
+    t.string  "battle_type"
+  end
 end
 
 QUOTED_TYPE = ActiveRecord::Base.connection.quote_column_name('type')
