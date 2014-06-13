@@ -127,6 +127,7 @@ class MassAssignmentSecurityTest < ActiveModel::TestCase
     group = Group.create!
     pirate = Pirate.create!
     group.members << pirate
+    assert_equal pirate.memberships.first, group.memberships.first
   end
 
   def test_concat_has_many_through_polymorphic_association
@@ -135,6 +136,7 @@ class MassAssignmentSecurityTest < ActiveModel::TestCase
     wolf = Wolf.create!
 
     team.vampire_battles << vampire
-    wolf.battles << team
+    wolf.teams << team
+    assert_equal team.wolf_battles.first, wolf
   end
 end
