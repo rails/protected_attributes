@@ -246,7 +246,7 @@ class AttributeSanitizationTest < ActiveSupport::TestCase
   def test_protection_against_class_attribute_writers
     attribute_writers = [:logger, :configurations, :primary_key_prefix_type, :table_name_prefix, :table_name_suffix, :pluralize_table_names,
      :default_timezone, :schema_format, :lock_optimistically, :timestamped_migrations, :default_scopes,
-     :connection_handler, :nested_attributes_options, :attribute_types_cached_by_default,
+     :connection_handler, :nested_attributes_options,
      :attribute_method_matchers, :time_zone_aware_attributes, :skip_time_zone_conversion_for_attributes]
 
     attribute_writers.push(:_attr_readonly) if active_record_40?
