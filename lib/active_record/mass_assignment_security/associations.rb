@@ -82,8 +82,12 @@ module ActiveRecord
 
         record
       end
-
       private :build_record
+
+      def options_for_through_record
+        [through_scope_attributes, without_protection: true]
+      end
+      private :options_for_through_record
     end
 
     class SingularAssociation
