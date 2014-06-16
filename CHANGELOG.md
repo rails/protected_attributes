@@ -1,3 +1,10 @@
+## 1.0.8 (June 16, 2014)
+
+* Support Rails 4.0.6+ and 4.1.2+.
+
+  Fixes #35
+
+
 ## 1.0.7 (March 12, 2014)
 
 * Fix STI support on Active Record <= 4.0.3.
