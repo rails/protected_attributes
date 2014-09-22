@@ -1,3 +1,19 @@
+* Integrate with strong parameters. This allows to migrate a codebase partially
+  from `protected_attributes` to `strong_parameters`. Every model that does not
+  use a protection macro (`attr_accessible` or `attr_protected`), will be
+  protected by strong parameters. The behavior stays the same for models, which
+  use a protection macro.
+
+  To fully restore the old behavior set:
+
+      config.action_controller.permit_all_parameters = true
+
+  Or add a callback to your controllers like this:
+
+      before_action { params.permit! }
+
+  Fixes #41.
+
 ## 1.0.9
 
 * Fixes ThroughAssociation#build_record method on rails 4.1.10+
