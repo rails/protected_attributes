@@ -50,11 +50,14 @@ module ActiveModel
   # example implementation.
   module MassAssignmentSecurity
     extend ActiveSupport::Concern
+    include ActiveModel::ForbiddenAttributesProtection
 
     included do
       class_attribute :_accessible_attributes, instance_writer: false
       class_attribute :_protected_attributes,  instance_writer: false
       class_attribute :_active_authorizer,     instance_writer: false
+      class_attribute :_uses_mass_assignment_security, instance_writer: false
+      self._uses_mass_assignment_security = false
 
       class_attribute :_mass_assignment_sanitizer, instance_writer: false
       self.mass_assignment_sanitizer = :logger
@@ -123,6 +126,7 @@ module ActiveModel
           self._protected_attributes[name] = self.protected_attributes(name) + args
         end
 
+        self._uses_mass_assignment_security = true
         self._active_authorizer = self._protected_attributes
       end
 
@@ -189,6 +193,7 @@ module ActiveModel
           self._accessible_attributes[name] = self.accessible_attributes(name) + args
         end
 
+        self._uses_mass_assignment_security = true
         self._active_authorizer = self._accessible_attributes
       end
 
@@ -343,6 +348,10 @@ module ActiveModel
   protected
 
     def sanitize_for_mass_assignment(attributes, role = nil) #:nodoc:
+      unless _uses_mass_assignment_security
+        sanitize_forbidden_attributes(attributes)
+      end
+
       _mass_assignment_sanitizer.sanitize(self.class, attributes, mass_assignment_authorizer(role))
     end
 
