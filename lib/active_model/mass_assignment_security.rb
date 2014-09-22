@@ -206,7 +206,7 @@ module ActiveModel
       #   end
       #
       #   Customer.protected_attributes
-      #   # => #<ActiveModel::MassAssignmentSecurity::BlackList: {"logins_count"}>
+      #   # => #<ActiveModel::MassAssignmentSecurity::BlackList: {"logins_count"}>
       #
       #   Customer.protected_attributes(:default)
       #   # => #<ActiveModel::MassAssignmentSecurity::BlackList: {"logins_count"}>
@@ -255,10 +255,10 @@ module ActiveModel
       #   end
       #
       #   Customer.active_authorizers
-      #   # => {
+      #   # => {
       #   #       :admin=> #<ActiveModel::MassAssignmentSecurity::WhiteList: {"name", "credit_rating"}>,
       #   #       :default=>#<ActiveModel::MassAssignmentSecurity::WhiteList: {"name"}>
-      #   #    }
+      #   #    }
       def active_authorizers
         self._active_authorizer ||= protected_attributes_configs
       end
