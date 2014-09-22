@@ -1,13 +1,6 @@
 require 'test_helper'
 require 'active_model/mass_assignment_security'
 require 'models/mass_assignment_specific'
-require 'models/pirate'
-require 'models/group'
-require 'models/membership'
-require 'models/battle'
-require 'models/vampire'
-require 'models/wolf'
-require 'models/team'
 
 class CustomSanitizer < ActiveModel::MassAssignmentSecurity::Sanitizer
 
@@ -121,22 +114,5 @@ class MassAssignmentSecurityTest < ActiveModel::TestCase
     end
   ensure
     User.mass_assignment_sanitizer = old_sanitizer
-  end
-
-  def test_concat_has_many_through_association_member
-    group = Group.create!
-    pirate = Pirate.create!
-    group.members << pirate
-    assert_equal pirate.memberships.first, group.memberships.first
-  end
-
-  def test_concat_has_many_through_polymorphic_association
-    team = Team.create!
-    vampire = Vampire.create!
-    wolf = Wolf.create!
-
-    team.vampire_battles << vampire
-    wolf.teams << team
-    assert_equal team.wolf_battles.first, wolf
   end
 end

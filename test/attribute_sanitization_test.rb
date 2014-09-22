@@ -1,11 +1,18 @@
 require 'test_helper'
 require 'ar_helper'
 require 'active_record/mass_assignment_security'
+require 'models/battle'
 require 'models/company'
-require 'models/subscriber'
+require 'models/group'
 require 'models/keyboard'
-require 'models/task'
+require 'models/membership'
 require 'models/person'
+require 'models/pirate'
+require 'models/subscriber'
+require 'models/task'
+require 'models/team'
+require 'models/vampire'
+require 'models/wolf'
 
 module MassAssignmentTestHelpers
   def teardown
@@ -697,6 +704,24 @@ class MassAssignmentSecurityHasManyRelationsTest < ActiveSupport::TestCase
     end
   end
 
+  # concat
+
+  def test_concat_has_many_through_association_member
+    group = Group.create!
+    pirate = Pirate.create!
+    group.members << pirate
+    assert_equal pirate.memberships.first, group.memberships.first
+  end
+
+  def test_concat_has_many_through_polymorphic_association
+    team = Team.create!
+    vampire = Vampire.create!
+    wolf = Wolf.create!
+
+    team.vampire_battles << vampire
+    wolf.teams << team
+    assert_equal team.wolf_battles.first, wolf
+  end
 end
 
 
