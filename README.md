@@ -6,6 +6,8 @@ Protect attributes from mass-assignment in ActiveRecord models.
 
 This plugin adds `attr_accessible` and `attr_protected` in your models.
 
+Note: This plugin will be officially supported until the release of Rails 5.0
+
 ## Installation
 
 Add this line to your application's Gemfile:
