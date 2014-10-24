@@ -1,6 +1,6 @@
 module ActiveRecord
   module Reflection
-    class AssociationReflection
+    class AbstractReflection
       def build_association(*options, &block)
         klass.new(*options, &block)
       end

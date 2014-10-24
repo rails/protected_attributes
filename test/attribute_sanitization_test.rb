@@ -602,6 +602,12 @@ class MassAssignmentSecurityHasManyRelationsTest < ActiveSupport::TestCase
     end
   end
 
+  def test_has_many_through_build_with_attr_accessible_attributes
+    group = Group.create!
+    pirate = group.members.build(name: "Murphy")
+    assert_equal "Murphy", pirate.name
+  end
+
   # new
 
   def test_has_many_new_with_attr_protected_attributes
