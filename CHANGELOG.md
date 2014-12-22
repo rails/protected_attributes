@@ -14,6 +14,11 @@
 
   Fixes #41.
 
+## 1.0.9
+
+* Fixes build_association method on rails 4.2.0+
+
+  Fixes https://github.com/rails/rails/issues/18121
 
 ## 1.0.8 (June 16, 2014)
 
