@@ -50,6 +50,7 @@ ActiveRecord::Schema.define do
   end
 
   create_table :pirates, :force => true do |t|
+    t.string :name
   end
 
   create_table :groups, :force => true do |t|
