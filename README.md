@@ -6,6 +6,8 @@ Protect attributes from mass-assignment in ActiveRecord models.
 
 This plugin adds `attr_accessible` and `attr_protected` in your models.
 
+Note: This plugin will be officially supported until the release of Rails 5.0
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -105,6 +107,18 @@ class AccountsController < ApplicationController
   end
 end
 ```
+
+### Errors
+
+By default, errors will not be raised if the user passes attributes in the params hash which are not allowed to be updated.
+If you want the functionality where exceptions (`ActiveModel::MassAssignmentSecurity::Error`) are raised.  Add to your config
+the strict flag:
+
+```ruby
+config.active_record.mass_assignment_sanitizer = :strict
+```
+
+
 ## Contributing
 
 1. Fork it
