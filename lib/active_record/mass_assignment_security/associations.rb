@@ -90,6 +90,17 @@ module ActiveRecord
       private :options_for_through_record
     end
 
+    module ThroughAssociation
+      def build_record(attributes, options)
+        reflection.build_association(attributes, options) do |record|
+          skip_assign = [reflection.foreign_key, reflection.type].compact
+          attributes = create_scope.except(*(record.changed - skip_assign))
+          record.assign_attributes(attributes, :without_protection => true)
+        end
+      end
+      private :build_record
+    end
+
     class SingularAssociation
       def create(attributes = {}, options = {}, &block)
         create_record(attributes, options, &block)
