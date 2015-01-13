@@ -34,7 +34,7 @@ module ActiveModel
 
       def backtrace
         if defined? Rails
-          Rails.backtrace_cleaner.clean(caller)
+          ActiveSupport::BacktraceCleaner.new.clean(caller)
         else
           caller
         end
