@@ -75,13 +75,14 @@ In a similar way, `new`, `create`, `create!`, `update_attributes` and `update_at
 @user.name # => Sebastian
 @user.is_admin # => true
 ```
-A more paranoid technique to protect your whole project would be to enforce that all models define their accessible attributes. 
-This can be easily achieved with a very simple application config option of:
+By default the gem will create an empty whitelist of attributes available for mass-assignment for all models in your app. 
+As such, your models will need to explicitly whitelist or blacklist accessible parameters by using an `attr_accessible` or `attr_protected` declaration. This technique is best applied at the start of a new project. However, for an existing project with a thorough set of functional tests, it should be straightforward and relatively quick to use this application config option; run your tests, and expose each attribute (via `attr_accessible` or `attr_protected`), as dictated by your failing test.
+
+This option can be turned of with a very simple applicatoin config
+option of:
 ```ruby
 config.active_record.whitelist_attributes = true
 ```
-This will create an empty whitelist of attributes available for mass-assignment for all models in your app. 
-As such, your models will need to explicitly whitelist or blacklist accessible parameters by using an `attr_accessible` or `attr_protected` declaration. This technique is best applied at the start of a new project. However, for an existing project with a thorough set of functional tests, it should be straightforward and relatively quick to use this application config option; run your tests, and expose each attribute (via `attr_accessible` or `attr_protected`), as dictated by your failing test.
 
 For more complex permissions, mass-assignment security may be handled outside the model by extending a non-ActiveRecord class, such as a controller, with this behavior.
 
