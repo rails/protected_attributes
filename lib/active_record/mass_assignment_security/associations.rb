@@ -65,6 +65,22 @@ module ActiveRecord
       end
     end
 
+    module ThroughAssociation
+
+      private
+
+        def build_record(attributes, options={})
+          inverse = source_reflection.inverse_of
+          target = through_association.target
+
+          if inverse && target && !target.is_a?(Array)
+            attributes[inverse.foreign_key] = target.id
+          end
+
+          super(attributes, options)
+        end
+    end
+
     class HasManyThroughAssociation
       def build_record(attributes, options = {})
         ensure_not_nested
