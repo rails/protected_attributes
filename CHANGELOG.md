@@ -16,6 +16,10 @@
 
 ## 1.0.9
 
+* Fixes ThroughAssociation#build_record method on rails 4.1.10+
+
+  Fixes #60, #63
+
 * Fixes build_association method on rails 4.2.0+
 
   Fixes https://github.com/rails/rails/issues/18121
