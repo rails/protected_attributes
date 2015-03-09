@@ -1,6 +1,6 @@
 # ProtectedAttributes
 
-[![Build Status](https://travis-ci.org/rails/protected_attributes.png)](https://travis-ci.org/rails/protected_attributes)
+[![Build Status](https://api.travis-ci.org/rails/protected_attributes.svg?branch=master)](https://travis-ci.org/rails/protected_attributes)
 
 Protect attributes from mass-assignment in ActiveRecord models.
 
