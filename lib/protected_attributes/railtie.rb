@@ -1,5 +1,3 @@
-require 'rails/railtie'
-
 module ProtectedAttributes
   class Railtie < ::Rails::Railtie
     config.before_configuration do |app|

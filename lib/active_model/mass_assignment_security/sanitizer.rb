@@ -33,7 +33,7 @@ module ActiveModel
       end
 
       def backtrace
-        if defined? Rails
+        if defined? Rails.backtrace_cleaner
           Rails.backtrace_cleaner.clean(caller)
         else
           caller
