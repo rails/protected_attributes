@@ -118,6 +118,12 @@ the strict flag:
 config.active_record.mass_assignment_sanitizer = :strict
 ```
 
+### Models with undeclared attribute protection
+
+If you have models where you specified neither `attr_accessible` nor `attr_protected`, you may get test failures and warnings like "Can't mass-assign protected attributes for Foo: bar_id".
+
+If you don't want to declare all models, this blog post describes a workaround: ["Migrating sloppy protected attributes to Rails 4"](http://thepugautomatic.com/2015/02/migrating-sloppy-protected-attributes-to-rails-4/)
+
 
 ## Contributing
 
