@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
 
-gem 'rails'
+gem 'rails', '~> 4.0'
 
 gemspec

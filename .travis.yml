@@ -13,7 +13,6 @@ gemfile:
   - gemfiles/Gemfile-rails-4.0
   - gemfiles/Gemfile-rails-4.1
   - gemfiles/Gemfile-rails-4.2
-  - Gemfile
 notifications:
   email: false
   irc:
