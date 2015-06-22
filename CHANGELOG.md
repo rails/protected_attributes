@@ -1,3 +1,5 @@
+## 1.1.0
+
 * Integrate with strong parameters. This allows to migrate a codebase partially
   from `protected_attributes` to `strong_parameters`. Every model that does not
   use a protection macro (`attr_accessible` or `attr_protected`), will be
