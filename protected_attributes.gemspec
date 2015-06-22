@@ -14,7 +14,6 @@ Gem::Specification.new do |gem|
   gem.license       = "MIT"
 
   gem.files         = Dir["LICENSE.txt", "README.md", "lib/**/*"]
-  gem.test_files    = Dir["test/**/*.rb"]
   gem.require_paths = ["lib"]
 
   gem.add_dependency "activemodel",  ">= 4.0.1", "< 5.0"
