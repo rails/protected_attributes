@@ -3,6 +3,9 @@ module ActiveRecord
     undef :first_or_create
     undef :first_or_create!
     undef :first_or_initialize
+    undef :find_or_initialize_by
+    undef :find_or_create_by
+    undef :find_or_create_by!
 
     # Tries to load the first record; if it fails, then <tt>create</tt> is called with the same arguments as this method.
     #
@@ -44,6 +47,18 @@ module ActiveRecord
     # Expects arguments in the same format as <tt>Base.new</tt>.
     def first_or_initialize(attributes = nil, options = {}, &block)
       first || new(attributes, options, &block)
+    end
+
+    def find_or_initialize_by(attributes, options = {}, &block)
+      find_by(attributes) || new(attributes, options, &block)
+    end
+
+    def find_or_create_by(attributes, options = {}, &block)
+      find_by(attributes) || create(attributes, options, &block)
+    end
+
+    def find_or_create_by!(attributes, options = {}, &block)
+      find_by(attributes) || create!(attributes, options, &block)
     end
   end
 end
