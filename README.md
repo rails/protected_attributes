@@ -1,30 +1,26 @@
-# ProtectedAttributes
+# Protected Attributes
 
 [![Build Status](https://api.travis-ci.org/rails/protected_attributes.svg?branch=master)](https://travis-ci.org/rails/protected_attributes)
 
-Protect attributes from mass-assignment in ActiveRecord models.
+Protect attributes from mass-assignment in Active Record models.
 
-This plugin adds `attr_accessible` and `attr_protected` in your models.
+This plugin adds the class methods `attr_accessible` and `attr_protected` to your models to be able to declare white or black lists of attributes.
 
-Note: This plugin will be officially supported until the release of Rails 5.0
+Note: This plugin will be officially supported until the release of Rails 5.0.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add this line to your application's `Gemfile`:
 
     gem 'protected_attributes'
 
 And then execute:
 
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install protected_attributes
+    bundle install
 
 ## Usage
 
-Mass assignment security provides an interface for protecting attributes from end-user assignment. This plugin provides two class methods in your Active Record class to control access to your attributes. The `attr_protected` method takes a list of attributes that will not be accessible for mass-assignment. 
+Mass assignment security provides an interface for protecting attributes from end-user injection. This plugin provides two class methods in Active Record classes to control access to their attributes. The `attr_protected` method takes a list of attributes that will be ignored in mass-assignment. 
 
 For example:
 ```ruby
@@ -35,12 +31,15 @@ attr_protected :admin
 ```ruby
 attr_protected :last_login, :as => :admin
 ```
-A much better way, because it follows the whitelist-principle, is the `attr_accessible` method. It is the exact opposite of `attr_protected`, because it takes a list of attributes that will be accessible. All other attributes will be protected. This way you won’t forget to protect attributes when adding new ones in the course of development. Here is an example:
+A much better way, because it follows the whitelist-principle, is the `attr_accessible` method. It is the exact opposite of `attr_protected`, because it takes a list of attributes that will be mass-assigned if present. Any other attributes will be ignored. This way you won’t forget to protect attributes when adding new ones in the course of development. Here is an example:
+
 ```ruby
 attr_accessible :name
 attr_accessible :name, :is_admin, :as => :admin
 ```
+
 If you want to set a protected attribute, you will to have to assign it individually:
+
 ```ruby
 params[:user] # => {:name => "owned", :is_admin => true}
 @user = User.new(params[:user])
@@ -48,12 +47,15 @@ params[:user] # => {:name => "owned", :is_admin => true}
 @user.is_admin = true
 @user.is_admin # => true
 ```
+
 When assigning attributes in Active Record using `attributes=` the `:default` role will be used. To assign attributes using different roles you should use `assign_attributes` which accepts an optional `:as` options parameter. If no `:as` option is provided then the `:default` role will be used. 
+
 You can also bypass mass-assignment security by using the `:without_protection` option. Here is an example:
+
 ```ruby
 @user = User.new
 
-@user.assign_attributes({ :name => 'Josh', :is_admin => true })
+@user.assign_attributes(:name => 'Josh', :is_admin => true)
 @user.name # => Josh
 @user.is_admin # => false
 
@@ -65,7 +67,9 @@ You can also bypass mass-assignment security by using the `:without_protection` 
 @user.name # => Josh
 @user.is_admin # => true
 ```
+
 In a similar way, `new`, `create`, `create!`, `update_attributes` and `update_attributes!` methods all respect mass-assignment security and accept either `:as` or `:without_protection` options. For example:
+
 ```ruby
 @user = User.new({ :name => 'Sebastian', :is_admin => true }, :as => :admin)
 @user.name # => Sebastian
@@ -75,17 +79,21 @@ In a similar way, `new`, `create`, `create!`, `update_attributes` and `update_at
 @user.name # => Sebastian
 @user.is_admin # => true
 ```
+
 By default the gem will create an empty whitelist of attributes available for mass-assignment for all models in your app.
+
 As such, your models will need to explicitly whitelist or blacklist accessible parameters by using an `attr_accessible` or `attr_protected` declaration. This technique is best applied at the start of a new project. However, for an existing project with a thorough set of functional tests, it should be straightforward and relatively quick to use this application config option; run your tests, and expose each attribute (via `attr_accessible` or `attr_protected`), as dictated by your failing test.
 
 This option can be turned off using a configuration option:
+
 ```ruby
 config.active_record.whitelist_attributes = false
 ```
 
-For more complex permissions, mass-assignment security may be handled outside the model by extending a non-ActiveRecord class, such as a controller, with this behavior.
+For more complex permissions, mass-assignment security may be handled outside the model by extending a non-Active Record class, such as a controller, with this behavior.
 
 For example, a logged-in user may need to assign additional attributes depending on their role:
+
 ```ruby
 class AccountsController < ApplicationController
   include ActiveModel::MassAssignmentSecurity
@@ -110,14 +118,13 @@ end
 
 ### Errors
 
-By default, errors will not be raised if the user passes attributes in the params hash which are not allowed to be updated.
-If you want the functionality where exceptions (`ActiveModel::MassAssignmentSecurity::Error`) are raised.  Add to your config
-the strict flag:
+By default, attributes in the params hash which are not allowed to be updated are just ignored. If you prefer an exception to be raised configure:
 
 ```ruby
 config.active_record.mass_assignment_sanitizer = :strict
 ```
 
+Any protected attributes violation raises `ActiveModel::MassAssignmentSecurity::Error` then.
 
 ## Contributing
 
