@@ -61,4 +61,16 @@ module ActiveRecord
       find_by(attributes) || create!(attributes, options, &block)
     end
   end
+
+  module QueryMethods
+    protected
+
+    def sanitize_forbidden_attributes(attributes) #:nodoc:
+      if !model._uses_mass_assignment_security
+        sanitize_for_mass_assignment(attributes)
+      else
+        attributes
+      end
+    end
+  end
 end
