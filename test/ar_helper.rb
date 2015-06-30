@@ -35,7 +35,7 @@ ActiveRecord::Schema.define do
     t.string     :comments
     t.references :best_friend
     t.references :best_friend_of
-    t.timestamps
+    t.timestamps null: false
   end
 
   create_table :subscribers, :force => true, :id => false do |t|
