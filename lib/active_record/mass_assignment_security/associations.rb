@@ -75,7 +75,7 @@ module ActiveRecord
     end
 
     module ThroughAssociation
-      undef :build_record
+      undef :build_record if respond_to?(:build_record, false)
 
       private
 
