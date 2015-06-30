@@ -348,11 +348,11 @@ module ActiveModel
   protected
 
     def sanitize_for_mass_assignment(attributes, role = nil) #:nodoc:
-      unless _uses_mass_assignment_security
+      if _uses_mass_assignment_security
+        _mass_assignment_sanitizer.sanitize(self.class, attributes, mass_assignment_authorizer(role))
+      else
         sanitize_forbidden_attributes(attributes)
       end
-
-      _mass_assignment_sanitizer.sanitize(self.class, attributes, mass_assignment_authorizer(role))
     end
 
     def mass_assignment_authorizer(role) #:nodoc:
