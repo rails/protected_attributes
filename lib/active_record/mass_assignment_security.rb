@@ -19,7 +19,6 @@ class ActiveRecord::Base
   include ActiveRecord::MassAssignmentSecurity::Core
   include ActiveRecord::MassAssignmentSecurity::AttributeAssignment
   include ActiveRecord::MassAssignmentSecurity::Persistence
-  include ActiveRecord::MassAssignmentSecurity::Relation
   include ActiveRecord::MassAssignmentSecurity::Validations
   include ActiveRecord::MassAssignmentSecurity::NestedAttributes
   include ActiveRecord::MassAssignmentSecurity::Inheritance
