@@ -5,6 +5,8 @@ require 'action_controller/metal/params_wrapper'
 module ActionController
   module ParamsWrapper
     class Options # :nodoc:
+      undef :include
+
       def include
         return super if @include_set
 

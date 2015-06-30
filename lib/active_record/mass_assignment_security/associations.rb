@@ -1,6 +1,8 @@
 module ActiveRecord
   module Associations
     class Association
+      undef :build_record
+
       def build_record(attributes, options)
         reflection.build_association(attributes, options) do |record|
           attributes = create_scope.except(*(record.changed - [reflection.foreign_key]))
@@ -12,6 +14,10 @@ module ActiveRecord
     end
 
     class CollectionAssociation
+      undef :build
+      undef :create
+      undef :create!
+
       def build(attributes = {}, options = {}, &block)
         if attributes.is_a?(Array)
           attributes.collect { |attr| build(attr, options, &block) }
@@ -51,6 +57,9 @@ module ActiveRecord
     end
 
     class CollectionProxy
+      undef :create
+      undef :create!
+
       def build(attributes = {}, options = {}, &block)
         @association.build(attributes, options, &block)
       end
@@ -66,6 +75,7 @@ module ActiveRecord
     end
 
     module ThroughAssociation
+      undef :build_record
 
       private
 
@@ -82,6 +92,9 @@ module ActiveRecord
     end
 
     class HasManyThroughAssociation
+      undef :build_record
+      undef :options_for_through_record
+
       def build_record(attributes, options = {})
         ensure_not_nested
 
@@ -107,6 +120,10 @@ module ActiveRecord
     end
 
     class SingularAssociation
+      undef :create
+      undef :create!
+      undef :build
+
       def create(attributes = {}, options = {}, &block)
         create_record(attributes, options, &block)
       end
