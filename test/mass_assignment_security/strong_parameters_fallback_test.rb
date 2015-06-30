@@ -4,16 +4,16 @@ require 'rack/test'
 require 'action_controller/metal/strong_parameters'
 require 'active_record/mass_assignment_security'
 require 'active_model/mass_assignment_security'
-require 'models/keyboard'
+require 'models/book'
 require 'models/person'
 
 
 class StrongParametersFallbackTest < ActiveModel::TestCase
   test "AR, use strong parameters when no protection macro (attr_accessible, attr_protected) was used." do
-    untrusted_params = ActionController::Parameters.new(key_number: 6)
+    untrusted_params = ActionController::Parameters.new(title: 'Agile Development with Ruby on Rails')
 
-    assert_raises(ActiveModel::ForbiddenAttributesError) { Keyboard.new untrusted_params }
-    assert_raises(ActiveModel::ForbiddenAttributesError) { Keyboard.new.attributes = untrusted_params }
+    assert_raises(ActiveModel::ForbiddenAttributesError) { Book.new untrusted_params }
+    assert_raises(ActiveModel::ForbiddenAttributesError) { Book.new.attributes = untrusted_params }
   end
 
   test "AR, ignore strong parameters when protection macro was used" do
