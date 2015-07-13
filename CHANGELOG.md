@@ -1,3 +1,11 @@
+## 1.1.1
+
+* Fix strong parameters integration.
+
+* Remove warnings
+
+* Fix `find_or_*` and `first_or_*` methods integration.
+
 ## 1.1.0
 
 * Integrate with strong parameters. This allows to migrate a codebase partially
