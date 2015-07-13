@@ -44,6 +44,10 @@ ActiveRecord::Schema.define do
   end
   add_index :subscribers, :nick, :unique => true
 
+  create_table :books, :force => true do |t|
+    t.string :title
+  end
+
   create_table :tasks, :force => true do |t|
     t.datetime :starting
     t.datetime :ending
