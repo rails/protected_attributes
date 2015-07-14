@@ -80,41 +80,7 @@ In a similar way, `new`, `create`, `create!`, `update_attributes` and `update_at
 @user.is_admin # => true
 ```
 
-By default the gem will create an empty whitelist of attributes available for mass-assignment for all models in your app.
-
-As such, your models will need to explicitly whitelist or blacklist accessible parameters by using an `attr_accessible` or `attr_protected` declaration. This technique is best applied at the start of a new project. However, for an existing project with a thorough set of functional tests, it should be straightforward and relatively quick to use this application config option; run your tests, and expose each attribute (via `attr_accessible` or `attr_protected`), as dictated by your failing test.
-
-This option can be turned off using a configuration option:
-
-```ruby
-config.active_record.whitelist_attributes = false
-```
-
-For more complex permissions, mass-assignment security may be handled outside the model by extending a non-Active Record class, such as a controller, with this behavior.
-
-For example, a logged-in user may need to assign additional attributes depending on their role:
-
-```ruby
-class AccountsController < ApplicationController
-  include ActiveModel::MassAssignmentSecurity
-
-  attr_accessible :first_name, :last_name
-  attr_accessible :first_name, :last_name, :plan_id, :as => :admin
-
-  def update
-    ...
-    @account.update_attributes(account_params)
-    ...
-  end
-
-  protected
-
-  def account_params
-    role = admin ? :admin : :default
-    sanitize_for_mass_assignment(params[:account], role)
-  end
-end
-```
+By default the gem will use the strong parameters protection when assigning attribute, unless your model has `attr_accessible` or `attr_protected` calls.
 
 ### Errors
 
