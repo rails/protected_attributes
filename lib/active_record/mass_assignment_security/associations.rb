@@ -93,7 +93,7 @@ module ActiveRecord
 
     class HasManyThroughAssociation
       undef :build_record
-      undef :options_for_through_record
+      undef :options_for_through_record if respond_to?(:options_for_through_record, false)
 
       def build_record(attributes, options = {})
         ensure_not_nested
