@@ -1,3 +1,9 @@
+## 1.1.2
+
+* Deprecate `config.active_record.whitelist_attributes`.
+
+* Fix integration with associations.
+
 ## 1.1.1
 
 * Fix strong parameters integration.
