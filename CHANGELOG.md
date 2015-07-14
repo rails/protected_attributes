@@ -1,3 +1,7 @@
+## 1.1.3
+
+* Fix deprecation code.
+
 ## 1.1.2
 
 * Deprecate `config.active_record.whitelist_attributes`.
