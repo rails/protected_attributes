@@ -15,7 +15,11 @@ module ActiveRecord
 
           attr_names.each do |association_name|
             if reflection = reflect_on_association(association_name)
-              reflection.options[:autosave] = true
+              if active_record_40?
+                reflection.options[:autosave] = true
+              else
+                reflection.autosave = true
+              end
               add_autosave_association_callbacks(reflection)
 
               nested_attributes_options = self.nested_attributes_options.dup
