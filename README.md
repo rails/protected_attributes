@@ -38,7 +38,7 @@ attr_accessible :name
 attr_accessible :name, :is_admin, :as => :admin
 ```
 
-If you want to set a protected attribute, you will to have to assign it individually:
+If you want to set a protected attribute, you will have to assign it individually:
 
 ```ruby
 params[:user] # => {:name => "owned", :is_admin => true}
