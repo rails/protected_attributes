@@ -91,7 +91,7 @@ module ActiveRecord
           end
 
           if limit && attributes_collection.size > limit
-            raise TooManyRecords, "Maximum #{limit} records are allowed. Got #{attributes_collection.size} records instead."
+            raise ActiveRecord::NestedAttributes::TooManyRecords, "Maximum #{limit} records are allowed. Got #{attributes_collection.size} records instead."
           end
         end
 
