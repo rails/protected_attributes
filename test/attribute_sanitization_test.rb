@@ -1225,4 +1225,15 @@ class MassAssignmentSecurityNestedAttributesTest < ActiveSupport::TestCase
     assert_equal 'Josh', person.best_friend.first_name
     assert_equal 'f', person.best_friend.gender
   end
+
+  def test_accepts_nested_attributes_for_and_protected_attributes_on_both_sides
+    team = Team.create
+
+    team.update_attributes({ :nested_battles_attributes => {
+      '0' => { :team_id => Team.create.id },
+      '1' => { :team_id => Team.create.id } }
+    })
+
+    assert_equal 2, Team.find(team.id).nested_battles.count
+  end
 end
