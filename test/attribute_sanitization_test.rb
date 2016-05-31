@@ -1236,4 +1236,17 @@ class MassAssignmentSecurityNestedAttributesTest < ActiveSupport::TestCase
 
     assert_equal 2, Team.find(team.id).nested_battles.count
   end
+
+  def test_accepts_nested_attributes_for_raises_when_limit_is_reached
+    team = Team.create
+    team.nested_attributes_options[:nested_battles].merge!(limit: 2)
+
+    assert_raises(ActiveRecord::NestedAttributes::TooManyRecords) do
+      team.nested_battles_attributes = {
+        '0' => { :team_id => Team.create.id },
+        '1' => { :team_id => Team.create.id },
+        '2' => { :team_id => Team.create.id }
+      }
+    end
+  end
 end
