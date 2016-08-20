@@ -1,18 +1,19 @@
 # Protected Attributes
 
-[![Build Status](https://api.travis-ci.org/rails/protected_attributes.svg?branch=master)](https://travis-ci.org/rails/protected_attributes)
+[![Build Status](https://api.travis-ci.org/westonganger/protected_attributes.svg?branch=master)](https://travis-ci.org/westonganger/protected_attributes)
 
 Protect attributes from mass-assignment in Active Record models.
 
 This plugin adds the class methods `attr_accessible` and `attr_protected` to your models to be able to declare white or black lists of attributes.
 
-Note: This plugin will be officially supported until the release of Rails 5.0.
+I have created this new repo because the Rails team refuses to support the `protected_attributes` gem for Rails 5. It already works perfectly fine with Rails 5 it just needed the dependencies relaxed. For people who would like to continue using this feature in their Rails 5 apps lets continue the development here. This plugin was officially supported by the Rails team until the release of Rails 5.0.
+
 
 ## Installation
 
 Add this line to your application's `Gemfile`:
 
-    gem 'protected_attributes'
+    gem 'protected_attributes_continued'
 
 And then execute:
 
