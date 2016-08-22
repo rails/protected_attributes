@@ -1,8 +1,8 @@
 # Protected Attributes Continued
 
-[![Build Status](https://api.travis-ci.org/westonganger/protected_attributes.svg?branch=master)](https://travis-ci.org/westonganger/protected_attributes)
+[![Build Status](https://api.travis-ci.org/westonganger/protected_attributes_continued.svg?branch=master)](https://travis-ci.org/westonganger/protected_attributes_continued)
 
-This is the community continued version of `protected_attributes`. I have created this new repo because the Rails team refuses to support the `protected_attributes` gem for Rails 5. It already works perfectly fine with Rails 5 it just needed the dependencies relaxed. For people who would like to continue using this feature in their Rails 5 apps lets continue the development here. This plugin was officially supported by the Rails team until the release of Rails 5.0.
+This is the community continued version of `protected_attributes`. I have created this new repo because the Rails team refuses to support the `protected_attributes` gem for Rails 5. It already works perfectly fine with Rails 5 it just needed the dependencies relaxed. For people who would like to continue using this feature in their Rails 5 apps lets continue the development here. The original `protected_attributes` was officially supported by the Rails team until the release of Rails 5.0.
 
 Protect attributes from mass-assignment in Active Record models.
 

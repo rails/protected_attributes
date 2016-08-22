@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'protected_attributes/version'
+require 'protected_attributes_continued/version'
 
 Gem::Specification.new do |gem|
   gem.name          = "protected_attributes_continued"
-  gem.version       = ProtectedAttributes::VERSION
+  gem.version       = ProtectedAttributesContinued::VERSION
   gem.authors       = ["David Heinemeier Hansson", "Weston Ganger"]
   gem.email         = ["david@loudthinking.com", 'westonganger@gmail.com']
   gem.description   = %q{Protect attributes from mass assignment}
