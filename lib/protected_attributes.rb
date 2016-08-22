@@ -1,6 +1,6 @@
 require "active_model/mass_assignment_security"
-require "protected_attributes_continued/railtie" if defined? Rails::Railtie
-require "protected_attributes_continued/version"
+require "protected_attributes/railtie" if defined? Rails::Railtie
+require "protected_attributes/version"
 
 ActiveSupport.on_load :active_record do
   require "active_record/mass_assignment_security"
