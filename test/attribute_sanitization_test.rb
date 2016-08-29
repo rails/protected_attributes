@@ -16,6 +16,7 @@ require 'models/wolf'
 
 module MassAssignmentTestHelpers
   def teardown
+    super
     ActiveRecord::Base.send(:descendants).each do |klass|
       begin
         klass.delete_all
