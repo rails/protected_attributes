@@ -3,25 +3,34 @@ sudo: false
 cache: bundler
 rvm:
   - 1.9.3
-  - 2.0.0
+  - 2.0
   - 2.1
   - 2.2
+  - 2.3
 gemfile:
   - gemfiles/Gemfile-rails-4.0-stable
   - gemfiles/Gemfile-rails-4.1-stable
   - gemfiles/Gemfile-rails-4.2-stable
+  - gemfiles/Gemfile-rails-5.0-stable
   - gemfiles/Gemfile-rails-4.0
   - gemfiles/Gemfile-rails-4.1
   - gemfiles/Gemfile-rails-4.2
+  - gemfiles/Gemfile-rails-5.0
+
+maxtrix:
+  allow_failures:
+    - gemfile: gemfiles/gemfile-rails-5.0
+      rvm: 1.9.3
+    - gemfile: gemfiles/gemfile-rails-5.0
+      rvm: 2.0
+    - gemfile: gemfiles/gemfile-rails-5.0
+      rvm: 2.1
+    - gemfile: gemfiles/gemfile-rails-5.0-stable
+      rvm: 1.9.3
+    - gemfile: gemfiles/gemfile-rails-5.0-stable
+      rvm: 2.0
+    - gemfile: gemfiles/gemfile-rails-5.0-stable
+      rvm: 2.1
+
 notifications:
   email: false
-  irc:
-    on_success: change
-    on_failure: always
-    channels:
-      - "irc.freenode.org#rails-contrib"
-  campfire:
-    on_success: change
-    on_failure: always
-    rooms:
-      - secure: "RuC26E0TkxKzIQfqLuSHphe5FlgC1ULzhGpkZXqht3oDQjAuR+EmslxdWS9c\nVWwEr7PA+jnEp/8+sYM8TqHgLxFDHTTC6DgQoNNUY/Ti+mEyZunOPmXWP4UG\n6NLwr/rIuP1DEmDa6/q8V7qGn++SJrm1m4emGU4PbYNu6e6Nihc="

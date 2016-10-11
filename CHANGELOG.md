@@ -1,3 +1,8 @@
+## 1.2.0
+
+* Added Rails 5 support, already works just needed the gemspec updated to allow it
+* New repo `protected_attributes_continued` because Rails refuses to support Rails 5
+
 ## 1.1.3
 
 * Fix deprecation code.
