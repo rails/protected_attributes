@@ -1,3 +1,9 @@
+## 1.1.4
+
+* Avoid double callbacks in Rails >= 4.1.
+
+* Fixes UnitializedConstant in TooManyRecords.
+
 ## 1.1.3
 
 * Fix deprecation code.
