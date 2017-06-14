@@ -15,7 +15,7 @@ module ActiveRecord
 
           attr_names.each do |association_name|
             if reflection = reflect_on_association(association_name)
-              if active_record_40?
+              if ActiveRecord::VERSION::MAJOR == 4 && ActiveRecord::VERSION::MINOR == 0
                 reflection.options[:autosave] = true
               else
                 reflection.autosave = true
@@ -28,7 +28,7 @@ module ActiveRecord
 
               type = (reflection.collection? ? :collection : :one_to_one)
 
-              generated_methods_module = active_record_40? ? generated_feature_methods : generated_association_methods
+              generated_methods_module = (ActiveRecord::VERSION::MAJOR == 4 && ActiveRecord::VERSION::MINOR == 0) ? generated_feature_methods : generated_association_methods
 
               # def pirate_attributes=(attributes)
               #   assign_nested_attributes_for_one_to_one_association(:pirate, attributes, mass_assignment_options)
