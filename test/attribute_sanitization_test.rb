@@ -257,12 +257,12 @@ class AttributeSanitizationTest < ActiveSupport::TestCase
      :connection_handler, :nested_attributes_options,
      :attribute_method_matchers, :time_zone_aware_attributes, :skip_time_zone_conversion_for_attributes]
 
-    attribute_writers.push(:_attr_readonly) if active_record_40?
+    attribute_writers.push(:_attr_readonly) if ActiveRecord::VERSION::MAJOR == 4 && ActiveRecord::VERSION::MINOR == 0
 
     attribute_writers.each do |method|
       assert_respond_to Task, method
       assert_respond_to Task, "#{method}="
-      assert_respond_to Task.new, method unless method == :configurations && !active_record_40?
+      assert_respond_to Task.new, method unless method == :configurations && !(ActiveRecord::VERSION::MAJOR == 4 && ActiveRecord::VERSION::MINOR == 0)
       assert !Task.new.respond_to?("#{method}=")
     end
   end
@@ -518,7 +518,7 @@ class MassAssignmentSecurityFindersTest < ActiveSupport::TestCase
   end
 end
 
-if active_record_40?
+if ActiveRecord::VERSION::MAJOR == 4 && ActiveRecord::VERSION::MINOR == 0
   # This class should be deleted when we remove activerecord-deprecated_finders as a
   # dependency.
   class MassAssignmentSecurityDeprecatedFindersTest < ActiveSupport::TestCase
