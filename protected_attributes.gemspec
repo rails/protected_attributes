@@ -22,5 +22,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "actionpack",   ">= 4.0.1", "< 5.0"
   gem.add_development_dependency "railties",   ">= 4.0.1", "< 5.0"
   gem.add_development_dependency "sqlite3"
-  gem.add_development_dependency "mocha"
+  gem.add_development_dependency "mocha", "< 1.5"
 end
