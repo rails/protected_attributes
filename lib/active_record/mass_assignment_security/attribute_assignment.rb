@@ -74,6 +74,9 @@ module ActiveRecord
         @mass_assignment_options = previous_options
       end
 
+      # alias attributes= so it points to the new assign_attributes method
+      alias attributes= assign_attributes
+
       protected
 
       def mass_assignment_options
