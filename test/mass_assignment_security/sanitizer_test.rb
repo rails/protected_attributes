@@ -17,6 +17,11 @@ class SanitizerTest < ActiveModel::TestCase
     @authorizer = Authorizer.new
   end
 
+  test "ignores invalid attributes" do
+    attributes = @logger_sanitizer.sanitize(self.class, 'invalid', @authorizer)
+    assert attributes, {}
+  end
+
   test "sanitize attributes" do
     original_attributes = { 'first_name' => 'allowed', 'admin' => 'denied' }
     attributes = @logger_sanitizer.sanitize(self.class, original_attributes, @authorizer)
