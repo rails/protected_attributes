@@ -3,6 +3,8 @@ module ActiveModel
     class Sanitizer #:nodoc:
       # Returns all attributes not denied by the authorizer.
       def sanitize(klass, attributes, authorizer)
+        return {} unless attributes.is_a?(Hash)
+        
         rejected = []
         sanitized_attributes = attributes.reject do |key, value|
           rejected << key if authorizer.deny?(key)
